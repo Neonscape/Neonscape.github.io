@@ -2,14 +2,13 @@ import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  base: "/",
+	base: "/",
 
-  lang: "zh-CN",
-  title: "博客演示",
-  description: "vuepress-theme-hope 的博客演示",
+	lang: "zh-CN",
+	title: ">DREAM SYSTEM VER 0.1.0<",
+	description: "fade into an neon ocean",
 
-  theme,
-
-  // Enable it with pwa
-  // shouldPrefetch: false,
+	theme,
+	// Enable it with pwa
+	// shouldPrefetch: false,
 });

@@ -1,6 +1,9 @@
 ---
 icon: circle-info
-cover: /assets/images/cover3.jpg
+cover: /assets/imgs/bgs/4.png
+image: /assets/imgs/bgs/4.png
+category:
+    - introduction
 ---
 
 # 介绍页
