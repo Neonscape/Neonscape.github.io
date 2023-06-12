@@ -12,6 +12,11 @@ export default navbar([
 				icon: "pen-to-square",
 				link: "diary/catalogue",
 			},
+			{
+				text: "Misc",
+				icon: "misc",
+				link: "misc/catalogue",
+			},
 		],
 	},
 ]);
