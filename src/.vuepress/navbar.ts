@@ -17,6 +17,11 @@ export default navbar([
 				icon: "misc",
 				link: "misc/catalogue",
 			},
+			{
+				text: "Logs",
+				icon: "log",
+				link: "logs/catalogue",
+			},
 		],
 	},
 ]);
