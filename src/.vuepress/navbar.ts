@@ -14,13 +14,13 @@ export default navbar([
 			},
 			{
 				text: "Misc",
-				icon: "misc",
+				icon: "ellipsis",
 				link: "misc/catalogue",
 			},
 			{
-				text: "Logs",
-				icon: "log",
-				link: "logs/catalogue",
+				text: "notes",
+				icon: "book",
+				link: "notes/catalogue",
 			},
 		],
 	},
