@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3543dd6e","path":"/tag/floyd/","title":"floyd 标签","lang":"zh-CN","frontmatter":{"title":"floyd 标签","index":false,"feed":false,"sitemap":false,"blog":{"type":"category","name":"floyd","key":"tag"},"layout":"BlogCategory"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":0},"filePathRelative":null,"excerpt":""}');export{e as data};
