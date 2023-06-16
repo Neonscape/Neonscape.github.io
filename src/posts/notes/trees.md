@@ -14,11 +14,11 @@ tags:
 
 # 离散数学笔记：树
 
-![好看的](/assets/imgs/bgs/(9).png)
-
 ~~学不完辣~~
 
 <!-- more -->
+
+![好看的](/assets/imgs/bgs/(9).png)
 
 ## 树：基本知识
 
