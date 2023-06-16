@@ -1,7 +1,7 @@
 ---
 article: true
 author: Neonscape
-date: 2023-06-14
+date: 2023-06-15
 image: /assets/imgs/bgs/25.png
 cover: /assets/imgs/bgs/26.png
 category: 
