@@ -1,0 +1,1 @@
+import{_ as e}from"./plugin-vue_export-helper-c27b6911.js";import{o as t,c}from"./app-ade3ccda.js";const o={};function r(_,s){return t(),c("div")}const i=e(o,[["render",r],["__file","trees_applications.html.vue"]]);export{i as default};
