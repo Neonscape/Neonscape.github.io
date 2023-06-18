@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-070a7660","path":"/tag/politics/","title":"politics 标签","lang":"zh-CN","frontmatter":{"title":"politics 标签","index":false,"feed":false,"sitemap":false,"blog":{"type":"category","name":"politics","key":"tag"},"layout":"BlogCategory"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":0},"filePathRelative":null,"excerpt":""}');export{e as data};
