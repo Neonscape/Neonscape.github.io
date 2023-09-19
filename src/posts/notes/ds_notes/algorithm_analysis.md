@@ -103,15 +103,15 @@ tags:
 在衡量算法的复杂度时有时候需要引入一些和输入数据的内容有关的变量$T_i$。这些变量决定了算法的最坏、最好和平均复杂度.
 此时，这些$T_i$分别取最大、最小和平均值--
 $$
-W(n) = \max_{{x} \in {X_n}}{T(x)}
+W(n) = \max_{x \in {X_n}}(T(x))
 
 \\
 
-B(n) = \min_{{x} \in X_n}{T(x)}
+B(n) = \min_{x \in {X_n}}(T(x))
 
 \\
 
-Av(n) = \sum_{x \in X_n} {T(x) \cdot Pr(x)}
+Av(n) = \sum_{x \in {X_n}} (T(x) \cdot Pr(x))
 $$
 
 
