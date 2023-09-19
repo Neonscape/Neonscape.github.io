@@ -2,8 +2,8 @@
 article: true
 author: Neonscape
 date: 2023-09-14
-image: /assets/imgs/bgs/20230912(14).png
-cover: /assets/imgs/bgs/20230912(24).png
+image: /assets/imgs/bgs/20230912(1).png
+cover: /assets/imgs/bgs/20230912(2).png
 category: 
 - notes
 tags:
