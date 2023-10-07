@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-66455822","path":"/posts/notes/ai_notes/","title":"Ai Notes","lang":"zh-CN","frontmatter":{"title":"Ai Notes","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null,"excerpt":""}');export{e as data};
