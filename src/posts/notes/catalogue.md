@@ -24,3 +24,4 @@ category:
 - [2023秋-人工智能导论-课程笔记](./ai_notes/catalogue.md)
 - [2023秋-数据结构与算法-课程笔记](./ds_notes/catalogue.md)
 - [2023秋-计算机组织与结构-课程笔记](./co_notes/catalogue.md)
+- [2023秋-毛泽东思想与中国特色社会主义理论体系-复习笔记](./mao_theory_notes.md)
