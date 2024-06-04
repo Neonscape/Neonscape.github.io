@@ -19,6 +19,9 @@ category:
 - [树：笔记](trees.md)
 - [树的应用：笔记](trees_applications.md)
 - [生成树, Prim 算法与 Kruskal 算法: 笔记](spanning_tree.md)
+
+## 课程笔记
+
 - [2023 思想道德与法治-期末复习笔记](moral_politics_notes.md)
 - [2023 微观经济学-期末复习笔记](micro_economics.md)
 
@@ -28,3 +31,4 @@ category:
 - [2023 秋-毛泽东思想与中国特色社会主义理论体系-复习笔记](./mao_theory_notes.md)
 
 - [2024 春-数据管理基础-课程笔记](./db_notes/database_notes.md)
+- [2024 春-互联网计算-课程笔记](./computer_network_notes.md)
