@@ -5,10 +5,9 @@ date: 2024-06-04
 image: /assets/imgs/bg_new/00095-3117391577.png
 cover: /assets/imgs/bg_new/00101-142766746.png
 category:
-
-- notes
-  tags:
-- Computer Network
+  - notes
+tags:
+  - Computer Network
 ---
 
 # 2024 春 互联网计算 课程笔记
