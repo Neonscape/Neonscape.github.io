@@ -34,3 +34,4 @@ category:
 - [2024 春-互联网计算-课程笔记](./computer_network_notes.md)
 - [2024 春-软件工程与计算Ⅱ-课程笔记](./software_engineering_notes.md)
 - [2024 春-操作系统-课程笔记](./os_notes.md)
+- [2024 春-中国近现代史纲要-课程笔记](./history_notes.md)
