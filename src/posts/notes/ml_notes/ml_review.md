@@ -311,8 +311,9 @@ $$
 最小，让
 $$
 \begin{aligned}
-  ||\bold{\omega}^T\bold{\mu_0} - \bold{\omega}^T\bold{\mu_1}||^2_2
+  \|\bold{\omega}^T\bold{\mu_0} - \bold{\omega}^T\bold{\mu_1}\|^2_2
 \end{aligned}
+
 $$
 最大。
 
@@ -320,7 +321,7 @@ $$
 
 $$
 \begin{aligned}
-  \bold{J} &= \frac{{||\bold{\omega}^T\bold{\mu_0} - \bold{\omega}^T\bold{\mu_1}||^2_2}}{\bold{\omega}^T(\Sigma_0 + \Sigma_1)\bold{\omega} + \bold{\omega}^T\Sigma_1\bold{\omega}} \\
+  \bold{J} &= \frac{ {\|\bold{\omega}^T\bold{\mu_0} - \bold{\omega}^T\bold{\mu_1}\|^2_2}}{\bold{\omega}^T(\Sigma_0 + \Sigma_1)\bold{\omega} + \bold{\omega}^T\Sigma_1\bold{\omega}} \\
   &= \frac{\bold{\omega}^T(\bold{\mu_0 - \bold{\mu_1})(\bold{\mu_0} - \bold{\mu_1})^T\bold{\omega}}}{\bold{\omega}^T(\Sigma_0 + \Sigma_1)\bold{\omega}} \\
 \end{aligned}
 $$
@@ -370,4 +371,6 @@ $$
 在预测时，将新样本交给$M$个分类器进行预测，得到新样本的输出码并分别和每一类的输出码计算距离；取 **距离最小的** 类别作为最预测输出。
 
 ### 3.4 类别不平衡问题
+
+
 
