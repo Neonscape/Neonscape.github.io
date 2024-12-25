@@ -74,7 +74,7 @@ $$
   - 唯一一个具有该性质的离散分布
   - 期望为$\frac{1}{p}$
 - 负二项分布（在得到$r$次成功结果前的失败次数）
-  - $p_X(k) = {{k+r-1} \choose k}(1-p)^kp^r = (-1)^k{-r \choose k}(1-p)^kp^r$
+  - $p_X(k) = ({k+r-1} \choose k) (1-p)^kp^r = (-1)^k{-r \choose k}(1-p)^kp^r$
   - 期望为$\frac{r(1-p)}{p}$
 - 超几何分布（从已知数量的N个物体中**无放回的**抽取M次，其中成功的次数）
   - $p_X(k) = {M \choose k}{N-M \choose n-k}/{N \choose n}; k = 0, 1, \dots, n$

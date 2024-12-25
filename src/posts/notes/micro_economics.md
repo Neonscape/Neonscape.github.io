@@ -294,7 +294,7 @@ tags:
 **需求价格弹性**:
 
 - 计算公式:
-  - (一般): $\frac{需求量变化百分比}{价格变动百分比}$
+  - (一般): $\frac{\text{需求量变化百分比}}{\text{价格变动百分比}}$
   - $E_d = \left| \frac{\frac{\Delta Q}{Q}}{\frac{\Delta P}{P}} \right| = \left| \frac{\Delta Q}{\Delta P} \frac{P}{Q} \right|$
   - $E_d = \left| \lim_{\Delta P \to \infty}\frac{\Delta Q}{Q} \frac{\Delta P}{P}\right| = \left| \frac{dQ}{dP} \frac{P}{Q} \right|$
 - 弧弹性
@@ -383,7 +383,7 @@ tags:
 ::: info
 关于均衡价格变动的一些常见结论:
 | 需求D | 供给S | 价格P | 供给/需求量$Q^D 或 Q^S$ |
-|-------|-------|-------|-------------------------|
+| ----- | ----- | ----- | ----------------------- |
 | +     | --    | +     | +                       |
 | -     | --    | -     | -                       |
 | --    | +     | -     | +                       |
