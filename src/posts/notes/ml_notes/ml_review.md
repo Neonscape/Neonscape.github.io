@@ -401,5 +401,38 @@ $$
 
 具体的，我们通过构造$\frac{y'}{1 - y'} = \frac{y}{1 - y} \cdot \frac{m^-}{m^+}$来解决这个问题，也就是 **再缩放**。
 
-具体的
+### 4.5 连续与缺失值
 
+在生成划分点之后，使用离散属性值的方法(信息增益、基尼系数等)对这些划分点进行考察，以选择一个划分点。
+
+#### 缺失值处理
+
+缺失值处理需要解决两个问题：
+
+- 划分属性的选择
+- 划分属性上的缺失值处理
+
+假定有训练集$D$和属性$a$，属性$a$有$V$个可能的取值。
+
+假设$\tilde{D}$表示$D$中在属性$a$上没有缺失值的样本子集，$\tilde{D}_v$表示$\tilde{D}$中在属性$a$上取值为$v$的样本子集, $\tilde{D}_k$为$D$中属于第$k$类的样本子集。
+
+显然，我们只能根据$\tilde{D}$来决定属性$a$的好坏。
+
+假设我们为任意一个样本$x$都赋予了一个权重$\omega_x$.
+
+定义以下属性：
+
+- $\rho = \frac{\sum_{x \in \tilde{D}}\omega_x}{\sum_{x \in D} \omega_x}$: 样本中 **不含缺失值的部分** 所占的比例。
+- $\tilde{p}_k = \frac{\sum_{x \in \tilde{D}_k}\omega_x}{\sum_{x \in \tilde{D}} \omega_x}$: 样本不含缺失值的部分中 **第$k$类所占的比例**。
+- $\tilde{r}_v = \frac{\sum_{x \in \tilde{D}_v}\omega_x}{\sum_{x \in \tilde{D}} \omega_x}$: 样本不含缺失值的部分中 **取值为$v$的样本所占的比例**。
+
+则信息增益可以推广为
+
+$$
+\begin{aligned}
+  Gain(D, a) &= \rho \times Gain(\tilde{D}, a)\\
+  &= \rho \times \left(\text{Ent}\left(\tilde{D}\right) - \sum_{v = 1}^{V}\tilde{r}_v\text{Ent}\left(\tilde{D}^v\right)\right).
+\end{aligned}
+$$
+
+可以理解为在计算中，我们只考虑那些没有缺失值的样本，并用一个系数($\rho$)将缺失样本的影响进行修正；对于那些没有缺失值的样本，按照总熵减按照比例分布的各取值的样本的熵来计算。
