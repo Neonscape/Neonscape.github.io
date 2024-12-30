@@ -868,18 +868,139 @@ $$
 
 因此，我们希望找到具有最大间隔的超平面。
 
-假设超平面为$w^Tx + b = 0$，则样本点$\bold{x}$到超平面的距离为：
+假设超平面为$w^Tx + b = 0$，则样本点$\bold{x}$到超平面的距离$r$为：
 
 $$
 \begin{aligned}
-  \frac{|w^Tx + b|}{\|w\|}
+  r = \frac{|w^Tx + b|}{\|w\|}
 \end{aligned}
 $$
 
-记两侧的样本到超平面的最小距离之和为$\gamma$，我们的任务是寻找使得$\gamma$最大的参数$$
+假设样本的标签分别为$1$和$-1$，则样本点被正确分类的条件为
 
+$$
+\begin{aligned}
+  \begin{cases}
+    w^Tx + b \geq 1 & \text{if } y = 1\\
+    w^Tx + b \leq -1 & \text{if } y = -1
+  \end{cases}
+\end{aligned}
+$$
+
+（代入超平面表达式得到的取值足以被分类为某类样本）
+
+使得上述不等式成立的、距离超平面最近的几个样本点被称为**支持向量**。
+
+其中，$w^Tx + b = 1$和$w^Tx + b = -1$为距离原超平面$\frac{1}{\|w\|}$的两个超平面，称为 **最大间隔边界**；位于最大间隔边界上的向量称为 **支持向量**.
+
+记两侧的样本到超平面的最小距离之和为$\gamma$，有公式
+
+$$
+\gamma = \frac{2}{\|w\|}
+$$
+
+我们的任务是寻找使得$\gamma$最大的参数$w$和$b$，即
+
+$$
+\begin{aligned}
+  &\max_{w, b}\frac{2}{\|w\|}\\
+  &\text{s.t.} \quad y_i(w^Tx_i + b) \geq 1, i = 1, 2, \cdots, m
+\end{aligned}
+$$
+
+最大化$\|w\|^{-1}$等效于最小化$\|w\|^2$；于是上式可重写为
+
+$$
+\begin{aligned}
+  &\min_{w, b}\frac{1}{2}\|w\|^2\\
+  &\text{s.t.} \quad y_i(w^Tx_i + b) \geq 1, i = 1, 2, \cdots, m
+\end{aligned}
+$$
+
+这就是SVM问题的基本型。
 
 ### 6.2 对偶问题
+
+对SVM问题的基本型添加拉格朗日乘子，得到拉格朗日函数：
+
+$$
+\begin{align}
+  L(w, b, \bold{\alpha}) = \frac{1}{2}\|w\|^2 + \sum_{i = 1}^{m}\alpha_i[1 - y_i(w^Tx_i + b)]
+\end{align}
+$$
+
+其中$\alpha_i \geq 0$为拉格朗日乘子。
+
+上述过程中应用了 **KKT条件**。
+
+:::info **KKT条件**
+
+KKT条件用于处理约束是不等式时的情况。
+
+以上式为例，KKT条件共包括三个：
+
+- **拉格朗日乘子条件**：$\alpha_i \geq 0$
+- **互补松弛条件**：$\alpha_i[1 - y_i(w^Tx_i + b)] = 0$
+- **约束条件**：$y_i(w^Tx_i + b) \geq 1$
+- **梯度条件**：$\frac{\partial L}{\partial w} = 0, \frac{\partial L}{\partial b} = 0$.
+
+:::
+
+由梯度条件可得，
+
+$$
+\begin{align}
+  w &= \sum_{i = 1}^{m}\alpha_iy_ix_i\\
+  0 &= \sum_{i = 1}^{m}\alpha_iy_i
+\end{align}
+$$
+
+将$(5)$代入$(4)$，即可消去$w, b$；再代入$(6)$，即可得到SVM原始问题的对偶问题
+
+$$
+\begin{aligned}
+  &\max_{\alpha} \sum_{i = 1}^{m}\alpha_i - \frac{1}{2}\sum_{i = 1}^{m}\sum_{j = 1}^{m}\alpha_i\alpha_jy_iy_jx_i^Tx_j\\
+  &\text{s.t.} \quad \sum_{i = 1}^{m}\alpha_iy_i = 0, \alpha_i \geq 0, i = 1, 2, \cdots, m
+\end{aligned}
+$$
+
+解得$\alpha_i$后便可求出所需的$w$和$b$（解法后续介绍）：
+
+$$
+\begin{aligned}
+  f(x) &= w^Tx + b\\
+  &= \sum_{i = 1}^{m}\alpha_iy_ix_i^Tx + b
+\end{aligned}
+$$
+
+回顾KKT条件：
+
+$$
+\begin{cases}
+  \alpha_i \geq 0\\
+  \alpha_i[y_if(x) - 1] = 0\\
+  y_if(x) - 1 \geq 0
+\end{cases}
+$$
+
+因为求得的所有解均满足上述条件，因此对于任意一个训练样本，都有$\alpha_i = 0$或$y_if(x) = 1$;
+
+对于第一种情况，该样本将不会再出现在$f(x)$的表达式中，因此对于超平面的选择没有影响；
+
+对于第二种情况，该样本位于最大间隔边界上，是一个 **支持向量**。
+
+由此可见一个SVM的特殊性质:在训练完成后，绝大部分的训练样本都不会保留；最终的模型只和支持向量有关。
+
+:::info SMO算法
+
+SMO算法（Sequential Minimal Optimization）是求解对偶问题的算法。
+
+SMO算法的基本思路：
+
+1. 选择两个参数$a_i, a_j$并固定其他所有参数；
+2. 求解对偶问题，得到$a_i, a_j$的新值；
+
+:::
 
 ### 6.3 核函数
 
