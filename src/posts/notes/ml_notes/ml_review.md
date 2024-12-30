@@ -1124,7 +1124,7 @@ $$
 
 - hinge损失：$l_{hinge}(z) = \max(0, 1 - z)$
 - 指数损失：$l_{exp}(z) = \exp(-z)$
-- 对数损失：$l_{log}(z) = \log(1 + \exp(-z))$
+- 对率损失：$l_{log}(z) = \log(1 + \exp(-z))$
 
 采用`hinge`损失时，可将优化目标写成
 
@@ -1147,6 +1147,107 @@ $$
 \end{aligned}
 $$
 
+这就是软间隔向量机。
+
+软间隔向量机的最终模型也只与支持向量相关——采用`hinge`损失函数保持了SVM的稀疏性。
+
+:::note `hinge`损失函数与其他损失函数的对比
+
+- `hinge`损失
+  - 有一块平坦区域；解具有稀疏性，预测开销较低
+- 使用对率损失
+    - 预测开销较高
+  - 与对率回归相似，但不像对率回归的结果一样具有概率意义。
+  - 不能直接用于多分类任务。
+
+:::
+
 ### 6.5 支持向量回归
 
+类似的，我们可以提出支持向量回归模型(SVR)：
+
+给定训练样本$D = \set{(x_1, y_1), (x_2, y_2), \cdots, (x_m, y_m)}$，其中$x_i \in \mathcal{X} \subseteq \R^n, y_i \in \R$，$\mathcal{X}$为输入空间。
+
+我们希望学习到一个形如
+
+$$
+f(x) = \bold{w}^Tx + b
+$$
+
+的模型，使得$f(x)$和$y$尽可能接近。
+
+#### 传统回归模型
+
+传统回归模型通常直接基于模型输出$f(x)$和真实输出$y$之间的误差来计算损失。
+
+假设我们能容忍最大为$\epsilon$的偏差；这相当于以$f(x)$为中心，构建了一个宽度为$2\epsilon$的区域。
+
+则该问题的优化目标可以写成
+
+$$
+\begin{align}
+  \min_{w, b} \frac{1}{2}\|w\|^2 + C\sum_{i = 1}^{m}l_\epsilon(f(x_i) - y_i)
+\end{align}
+$$
+
+其中，$C$为正则化常数，$l_\epsilon$为$\epsilon$-不敏感函数。
+
+$$
+l_\epsilon(z) = \begin{cases}
+  &0, \quad \text{if} |z| \leq \epsilon; \\
+  &|z| - \epsilon, \quad \text{otherwise}.
+\end{cases}
+$$
+
+引入松弛变量$\xi_i$和$\hat{xi_i}$，可将上式转写为
+
+$$
+\begin{align}
+  \min_{w, b, \xi_i, \hat{\xi_i}} \frac{1}{2}\|w\|^2 + C\sum_{i = 1}^{m}(\xi_i + \hat{\xi_i})\\
+\end{align}
+$$
+
+用相同的方法可得到SVR的对偶问题：
+
+$$
+\begin{aligned}
+  &\max_{\alpha, \hat{\alpha}}\sum_{i = 1}^{m} y_i(\hat{\alpha_i} - \alpha_i) = \epsilon(\hat{\alpha_i} + \alpha_i) - \frac{1}{2}\sum_{i = 1}^{m}\sum_{j = 1}^{m}(\hat{\alpha_i} - \alpha_i)(\hat{\alpha_j} - \alpha_j)x_i^Tx_j\\
+  &\text{s.t. } \sum_{i = 1}^{m}(\hat{\alpha_i} - \alpha_i) = 0, 0 \leq \alpha_i, \hat{\alpha_i} \leq C
+\end{aligned}
+$$
+
+令上述过程满足KKT条件，可得当样本落入$2\epsilon$不敏感带时，不计算损失；由此模型获得了稀疏性。
+
+:::info 表示定理
+
+**表示定理**：任何SVM /  SVR 均能被表示为 **核函数的线性组合**。
+
+:::
+
 ### 6.6 核方法
+
+略
+
+## 七 贝叶斯分类器
+
+### 7.1 贝叶斯决策论
+
+给定$N$个类别，令$\lambda_{ij}$表示将$j$类样本误分类为$i$类样本的代价，则基于后验概率将样本$x$分类到类别$i$的条件风险为
+
+$$
+\begin{aligned}
+  
+\end{aligned}
+$$
+
+### 7.2 极大似然估计
+
+### 7.3 朴素贝叶斯分类器
+
+### 7.4 半朴素贝叶斯分类器
+
+### 7.5 贝叶斯网
+
+### 7.6 EM算法
+
+## 八 集成学习
