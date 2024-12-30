@@ -1000,11 +1000,152 @@ SMO算法的基本思路：
 1. 选择两个参数$a_i, a_j$并固定其他所有参数；
 2. 求解对偶问题，得到$a_i, a_j$的新值；
 
+研究发现，只要所选的$a_i, a_j$中至少有一个不满足KKT条件，目标函数就会在本次迭代之后减小;因此，SMO会先选择违背KKT条件程度最大的变量，再选取使得目标函数值减少最快的变量。
+
+实践中，SMO采用启发式方法选择$a_i, a_j$：使得两个样本之间的间隔最大。
+
 :::
 
 ### 6.3 核函数
 
+支持向量机也可用于训练样本在原始样本空间内线性不可分的情况。
+
+对于这种问题，可以将样本从原始空间映射到一个更高维的特征空间，使得样本在该空间内线性可分。
+
+有结论：**如果原始空间维数有限（原始样本属性数量有限），则一定存在一个更高维的特征空间使得样本线性可分。**
+
+令$\phi(\bold{x})$表示将$x$映射之后的特征向量，则在特征空间中划分训练样本的超平面为
+
+$$
+\begin{aligned}
+  f(x) &= w^T\phi(x) + b\\
+\end{aligned}
+$$
+
+类似的，其有对偶问题
+
+$$
+\begin{aligned}
+  &\max_{\alpha} \sum_{i = 1}^{m}\alpha_i - \frac{1}{2}\sum_{i = 1}^{m}\sum_{j = 1}^{m}\alpha_i\alpha_jy_iy_j\phi(x_i)^T\phi(x_j)\\
+  &\text{s.t.} \quad \sum_{i = 1}^{m}\alpha_iy_i = 0, \alpha_i \geq 0, i = 1, 2, \cdots, m
+\end{aligned}
+$$
+
+实践中，计算$\phi(x)^T\phi(x)$通常很困难（映射后的空间通常维数相当大），因此可以假设函数$\kappa(x_i, x_j) = \phi(x_i)^T\phi(x_j)$。
+
+则上式可以改写为
+
+$$
+\begin{aligned}
+  &\max_{\alpha} \sum_{i = 1}^{m}\alpha_i - \frac{1}{2}\sum_{i = 1}^{m}\sum_{j = 1}^{m}\alpha_i\alpha_jy_iy_j\kappa(x_i, x_j)\\
+  &\text{s.t.} \quad \sum_{i = 1}^{m}\alpha_iy_i = 0, \alpha_i \geq 0, i = 1, 2, \cdots, m
+\end{aligned}
+$$
+
+求解后可得
+
+$$
+\begin{aligned}
+  f(x) &= \sum_{i = 1}^{m}\alpha_iy_i\kappa(x_i, x) + b
+\end{aligned}
+$$
+
+这里的$\kappa(\cdot, \cdot)$就是 **核函数**。
+
+总而言之，核函数的引入可以让我们直接计算出样本在高维空间中的内积，而不用去计算高维向量的内积。
+
+上式也称“支持向量展式”，代表着 **模型的最优解可以通过训练样本的核函数展开**。
+
+:::info 核函数的存在定理
+
+令$\mathcal{X}$为输入空间，$\kappa(\cdot, \cdot)$是定义在$\mathcal{X} \times \mathcal{X}$空间上的对称函数，则$\kappa$是核函数当且仅当对于任意数据集$\mathcal{D} = \{x_1, x_2, \cdots, x_m\}$，核矩阵$K$总是正定的。
+
+$$
+\begin{aligned}
+  K = \begin{bmatrix}
+    \kappa(x_1, x_1) & \kappa(x_1, x_2) & \cdots & \kappa(x_1, x_m)\\
+    \kappa(x_2, x_1) & \kappa(x_2, x_2) & \cdots & \kappa(x_2, x_m)\\
+    \vdots & \vdots & \ddots & \vdots\\
+    \kappa(x_m, x_1) & \kappa(x_m, x_2) & \cdots & \kappa(x_m, x_m)
+  \end{bmatrix}
+\end{aligned}
+$$
+
+> 提示：一个矩阵$A$是半正定的，当且仅当对于任意非零实数向量$x$，有$xAx^T \geq 0$成立。
+
+~~这鬼东西真能考吗？？？~~
+
+:::
+
+:::note 常用的核函数
+
+- 线性核：$\kappa(x_i, x_j) = x_i^Tx_j$
+- 多项式核：$\kappa(x_i, x_j) = (x_i^Tx_j)^d$, $d \geq 1$为多项式的次数
+- 高斯核：$\kappa(x_i, x_j) = \exp(-\frac{\|x_i - x_j\|^2}{2\sigma^2})$, $\sigma > 0$为高斯核的带宽
+- 拉普拉斯核：$\kappa(x_i, x_j) = \exp(-\frac{\|x_i - x_j\|}{\sigma})$, $\sigma > 0$
+- Sigmoid核：$\kappa(x_i, x_j) = \tanh(\beta x_i^Tx_j + \theta)$, $\beta > 0, \theta < 0$
+
+另有如下定理成立：
+
+- 假设$\kappa_1, \kappa_2$均为核函数，则其线性组合$a\kappa_1 + b\kappa_2$也是核函数。
+- 假设$\kappa_1, \kappa_2$均为核函数，则其直积$\kappa_1 \cdot \kappa_2$也是核函数。
+- 假设$\kappa$是核函数，则对于任意函数$g(\cdot)$, $g(x)\kappa(x, z)g(z)$也是核函数。
+
+:::
+
 ### 6.4 软间隔、正则化
+
+在现实生活的问题中，常常难以找到一个超平面将样本彻底划分开来。为缓解这个问题，我们引入 **软间隔** 的概念——允许部分样本被错误分类。
+
+在软间隔SVM中，允许部分样本并不满足SVM的约束（落在最大间隔边界之内）；当然，这样的样本需要尽可能少。
+
+软间隔SVM的优化目标为
+
+$$
+\begin{aligned}
+  \min_{w, b} \frac{1}{2}w^Tw + C\sum_{i = 1}^{m}l_{0/1}(y_i(w^Tx_i + b) - 1)
+\end{aligned}
+$$
+
+其中$l_{0/1}$为“0/1损失函数”，定义如下：
+
+$$
+\begin{aligned}
+  l_{0/1}(z) = \begin{cases}
+    &1, \quad \text{if }z < 0;\\
+    &0, \quad \text{otherwise}.
+  \end{cases}
+\end{aligned}
+$$
+
+从优化目标可以看出，当$C \to \infty$时，软间隔SVM退化为硬间隔SVM。
+
+此外，0/1损失函数的数学性质不太好；因此实践中常用以下损失函数进行替换。
+
+- hinge损失：$l_{hinge}(z) = \max(0, 1 - z)$
+- 指数损失：$l_{exp}(z) = \exp(-z)$
+- 对数损失：$l_{log}(z) = \log(1 + \exp(-z))$
+
+采用`hinge`损失时，可将优化目标写成
+
+$$
+\min_{w, b} \frac{1}{2}w^Tw + C\sum_{i = 1}^{m}\max(0, 1 - y_i(w^Tx_i + b))
+$$
+
+当采用`hinge`损失，且引入 **松弛变量** $\xi_i \geq 0$, 则可将上式重写为
+
+$$
+\min_{w, b} \frac{1}{2}w^Tw + C\sum_{i = 1}^{m}\xi_i
+$$
+
+松弛变量$\xi_i$的定义如下（将原式进行移相）：
+
+$$
+\begin{aligned}
+  &y_i(w^Tx_i + b) \geq 1 - \xi_i\\
+  &\xi_i \geq 0, i = 1, 2, \dots, m.
+\end{aligned}
+$$
 
 ### 6.5 支持向量回归
 
