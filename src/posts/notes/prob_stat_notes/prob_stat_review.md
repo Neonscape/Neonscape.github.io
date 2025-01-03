@@ -1,193 +1,172 @@
 ---
 article: true
 author: Neonscape
-date: 2024-12-14
-image: /assets/imgs/bg2/101502157_p0.jpg
-cover: /assets/imgs/bg2/121033528_p0.png
+date: 2025-01-03
+image: /assets/imgs/202412/202412_6.jpg
+cover: /assets/imgs/202412/202412_5.png   
 category:
   - notes
 tag:
   - Probability & Statistics
 ---
 
-# 数据科学基础 复习
+# 概率论 复习
 
-<!--more-->
+## 一 样本空间
 
-## 一 概率空间、$\sigma$-代数
+- 样本空间：实验所有可能结果的集合
+  - 其中，每个结果都是样本空间中的一个样本 / 基本事件
+  - 样本空间中的任何一个子集都是一个事件。
 
-### $\sigma$-代数
+## 二 $\sigma$-代数
 
-$\sigma$-代数 $\mathcal{F}$ 是一个集合的集合，满足以下条件：
+给定一个集合$X$，若其 **子集族** $\mathcal{F}$满足以下条件，则称其为$X$上的$\sigma$代数：
 
-1. $\emptyset \in \mathcal{F}$
-2. $\mathcal{F}$ 是闭包的，即如果 $A \in \mathcal{F}$，则 $A^c \in \mathcal{F}$。
-3. $\mathcal{F}$ 是可列可并的，即如果 $A_i \in \mathcal{F}$，则 $\bigcup_{i=1}^\infty A_i \in \mathcal{F}$。
+- 包含全集：$X \in \mathcal{F}$。 注意：全集作为一个 **元素** 包含在其中。
+- 对补集运算封闭；
+- 对可数个集合的并运算封闭。
 
-例：
+关键性质：
 
-- $\Sigma = 2^\Omega$
-- $\Sigma = \set{\empty, \Omega}$
-- $\Sigma = \set{\empty, A, A^c, \Omega} \text{ for any } A \subseteq \Omega$
+- 包含空集
+- 对于可数集合的交运算也封闭。
+- 对于差集运算也封闭。
 
-以上均是$\Omega$上的$\sigma$-代数。
+## 三 条件概率
 
-:::warning 误区
-
-“任意一个自然数是偶数的概率为$\frac{1}{2}$”的说法是 **错误的**。
-
-有限集合和无限集合上的概率计算方法不同：
-
-- 有限集合可以用事件的数量除以事件的总数量来计算；
-- 无限集合中，概率的计算是通过概率测度函数完成的（总事件数量是无限的，无法使用上述的除法方法）。
-
-然而，自然数是一个 **可数无限集合**，不存在其上的均匀分布，因而无法定义一个合适的概率测度（如果有的话，每一个元素的测度都是0；但无限个0的和也是0，不满足概率测度的定义）。
-
-:::
-
-:::info 可数性 和 有 / 无限性
-
-一个 **可数** 的集合是一个能够和自然数集建立一一映射的集合；每个元素都能被分配一个唯一的自然数。
-
-一个 **无限** 的集合是含有无穷多个元素的集合；集合中的元素无法被全部列举出来。
-
-例子：
-
-- 可数无限集： 自然数集、整数集、有理数集
-- 不可数无限集： 实数集、实数区间、...
-
-:::
-
-### 布尔不等式
-
-::: info 集合上界（布尔不等式）
-
-对于事件$A_1, A_2, \dots, A_n \in \Sigma$, 有如下性质：
+### 定义
 
 $$
-Pr\left(\bigcup_{i = 1}^{n}A_i\right) \leq \sum_{i = 1}^{n}Pr(A_i)
+Pr(A | B) = \frac{Pr(A \cap B)}{Pr(B)}
 $$
 
-（也就是，事件的并的概率 小于等于 事件的概率的和）
+### 链式法则
 
-:::
+$$
+Pr\left(\bigcap_{i = 1}^{n}A_i\right) = \prod_{i = 1}^{n}Pr(A_i | \cap_{j < i} A_j)
+$$
 
-::: info 布尔-邦费罗尼不等式 （有限个事件的并的概率）
+形式化来说，可写成：
 
+$$
+Pr\left(A_1 \cap A_2 \cap \dots \cap A_n\right) = Pr(A_1) \cdot Pr(A_2 | A_1) \cdot Pr(A_3 | A_1 \cap A_2) \cdot \dots \cdot Pr(A_n | A_1 \cap A_2 \cap \dots \cap A_{n - 1}).
+$$
 
-对于某个正整数$k$和若干事件$A_1, A_2, \dots, A_n$, 定义
+### 全概率公式
+
+$$
+P(A) = \sum_{i = 1}^{n} P(A | B_i) P(B_i) = \sum_{i =1}^{n}Pr(A \cap B_i)
+$$
+
+将某个事件的概率划分为几个互斥事件下的条件概率之和。
+
+### 贝叶斯公式
 
 $$
 \begin{aligned}
-    S_1 &= \sum_{i = 1}^{n} P(A_i)\\
-    S_2 &= \sum_{1 \leq i < j \leq n} P(A_i \cap A_j)\\
-    &\vdots\\
-    S_k &= \sum_{1 \leq i_1 < i_2 < \dots < i_k \leq n} P(A_{i_1} \cap A_{i_2} \cap \dots \cap A_{i_k})\\
+  Pr(B | A) &= \frac{Pr(B)Pr(A | B)}{Pr(A)}
 \end{aligned}
 $$
-
-则有如下不等式：
-
-当$k$是奇数时： （加多了）
 
 $$
 \begin{aligned}
-    \text{Pr}\left(\bigcup_{i = 1}^{n}A_i\right) &\leq S_1 - S_2 + S_3 - \dots + (-1)^{k+1}S_k\\
+  Pr(B_i | A) &= \frac{Pr(B_i)Pr(A | B_i)}{\sum_{j = 1}^{n}Pr(B_j)Pr(A | B_j)}
 \end{aligned}
 $$
 
-当$k$为偶数时，有 （减多了）
+
+## 四 独立性
+
+若$A$和$B$相互独立，则：
+
+$$
+Pr(A \cap B) = Pr(A)Pr(B)
+$$
+
+若有一组事件$J = \set{A_1, A_2, \dots, A_n}$满足如下等式：
 
 $$
 \begin{aligned}
-    \text{Pr}\left(\bigcup_{i = 1}^{n}A_i\right) &\geq S_1 - S_2 + S_3 - \dots + (-1)^{k+1}S_k\\
+Pr\left(\bigcap_{i \in J}A_i\right) = \prod_{i \in J}Pr(A_i)
 \end{aligned}
 $$
 
-:::
+则称这一组事件为**相互独立**。
 
-### 错排问题
-
-**错排问题** 研究的是，将一个给定的元素重新排列，使得每个元素都不在原来的位置上的 排列方式有多少种 / 概率是多少。
-
-错排问题一般使用递推关系解决。
-
-> 设 $D_n$ 表示 $n$ 个元素的错排数，假设$n$排在了第$k$位（$n \neq k$），对于第$k$个元素进行讨论：
->
-> - 当$k$排在了第$n$位，则剩下的元素有 $D_{n - 2}$种错排方式；
-> - 假设第$k$个元素并没有排在第$n$位，则剩下的元素有$D_{n - 1}$种错排方式（将$k$与其他元素一起计算）
-> - 由于$k$一共有$n - 1$种取法，因此有关系$D_n = (n - 1)(D_{n - 2} + D_{n - 1})$.
->
-> 记$D_n = n!M_n$.
->
-> 上式可转化为
-> $$
-\begin{aligned}
-    & n!M_n = (n - 1)((n - 2)!M_{n - 2} + (n - 1)!M_{n - 1})\\
-    \xLeftrightarrow{} & nM_n = M_{n - 2} + (n - 1)M_{n - 1}\\
-    \xLeftrightarrow{} & n(M_n - M_{n - 1}) = -(M_{n - 1} - M_{n - 2})\\
-    \xLeftrightarrow{} & \frac{(M_n - M_{n - 1})}{M_{n - 1} - M_{n - 2}} = -\frac{1}{n}
-\end{aligned}
-> $$
-> 因此有
-> $$
-\begin{aligned}
-    M_n - M_{n - 1} &= (-1)^n\frac{1}{n!}
-\end{aligned}
-> $$
-> 拓展得
-> $$
-\begin{aligned}
-    M_2 - M_1 &= -\frac{1}{2!}\\
-    M_3 - M_2 &= \frac{1}{3!}\\
-    &\vdots\\
-    M_n - M_{n - 1} &= (-1)^n\frac{1}{n!}
-\end{aligned}
-> $$
-> 将上述式子累加得
-> $$
-\begin{aligned}
-    & M_n = \sum_{i = 2}^{n}(-1)^i\frac{1}{i!}\\
-    \xLeftrightarrow{} & D_n = \sum_{i = 2}^{n} (-1)^i \frac{n!}{i!}\\
-\end{aligned}
-> $$
-> 又因为$n$个元素共有$n!$种排列方式，因此$n$个元素全部错排的概率为$M_n$，且有
-> $$
-\lim_{n \to +\infty} M_n = \frac{1}{e}.
-> $$
-
-## 二 条件概率
-
-:::info 用不平等的概率构造平等的结果
-
-假设现在有一枚硬币，其每次抛掷出现正面的结果为$p$（**未知**），则可通过如下结果构造两个等概率的结果：
-
-连续抛掷两次，统计两次投掷出现的结果。
-
-- `HH` / `TT`: 重新进行实验
-- `HT` : 结果1
-- `TH` : 结果2
-
-:::
-
-### 贝叶斯定理
+若有一组事件$J = \set{A_1, A_2, \dots, A_n}$，它的 **任意有限子集$J$** 满足以下式子：
 
 $$
 \begin{aligned}
-    &P(A|B) = \frac{P(B|A)P(A)}{P(B)}
+\forall i, j, i \neq j, \quad Pr\left(A_i \cap A_j\right) = Pr(A_i)Pr(A_j)
 \end{aligned}
 $$
 
-上式中，各项定义如下：
+则称这一组事件为**两两独立**。
 
-- $P(A|B)$: A的 **后验概率** （已知发生某个事件后的概率）
-- $P(B|A)$: B的 **后验概率**
-- $P(A)$ / $P(B)$: A / B 的 **先验概率** （在相关信息未知的情况下发生的概率）
+互相独立的事件必定两两独立，两两独立的事件不一定互相独立。
 
-### 全概率定理
+## 五 离散和连续随机变量
+
+### 累积分布函数
+
+累积分布函数（Cumulative Distribution Function，CDF）用于描述一个随机变量X取小于或等于某个值的概率。数学表达形式为：
 
 $$
-\begin{aligned}
-    &P(A) = \sum_{i = 1}^{n}P(A \cap B_i) = \sum_{i = 1}^{n} P(A|B_i)P(B_i)
-\end{aligned}
+F(x) = Pr(X \leq x)
 $$
+
+其中，$F(x)$是累积分布函数，$X$是随机变量，$x$是任意实数。
+
+有如下性质：
+
+- $\lim_{x \to -\infty}F(x) = 0, \lim_{x \to +\infty}F(x) = 1$
+- 单调递增
+
+如果某个CDF能够被表示为某函数从负无穷到x的积分，则称该随机变量为**连续随机变量**；其概率密度函数为CDF的导数。
+
+### 概率质量函数
+
+概率质量函数（Probability Mass Function，PMF）用于描述离散随机变量取某个值的概率。数学表达形式为：
+
+$$
+p(x) = Pr(X = x)
+$$
+
+其中，$p(x)$是概率质量函数，$X$是离散随机变量，$x$是随机变量可能的取值。
+
+有如下性质：
+
+- $p(x) \geq 0$
+- $\sum_{x} p(x) = 1$
+
+### 不同的概率分布
+
+- 古典概型（离散均匀分布）
+- 伯努利分布（抛硬币）
+- 二项分布（一系列伯努利试验中成功的数量）
+- 几何分布（第一次成功时的实验数）
+  - 期望$\frac{1}{p}$, 方差$\frac{1-p}{p^2}$
+  - 无记忆性：$Pr(X > s + t | X > s) = Pr(X > t)$
+  - 唯一离散无记忆分布
+- 负二项分布（达到指定次数成功时的失败数）
+  - 期望$r\frac{1 - p}{p}$, 方差$r\frac{1-p}{p^2}$
+  - pmf: $p(x) = \binom{x + r - 1}{r - 1}p^r(1 - p)^x = (-1)^k\binom{-r}{k}(1-p)^k p^{r}$
+- 超几何分布（从有限样本中不放回的抽取一定数量，其中正面样本的数量）
+  - pmf: $p(X = x) = \frac{\binom{N}{x}\binom{M}{n - x}}{\binom{N}{n}}$
+- 泊松分布（在固定时间 / 空间内，某事件发生次数的离散分布）
+  - pmf: $p(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$
+  - 期望：$\lambda$
+  - 泊松随机变量的和也满足泊松分布
+- 多项分布：有多种结果的二项分布
+
+### LOTUS定理
+
+$$
+E[g(X)] = \int_{-\infty}^{\infty} g(x)f(x)dx
+$$
+
+$$
+E[g(X)] = \sum_{x} g(x)p(x)
+$$
+
+无需知道函数的分布便能求出函数的期望。
