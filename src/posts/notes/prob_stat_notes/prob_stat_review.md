@@ -151,13 +151,14 @@ $$
 - 负二项分布（达到指定次数成功时的失败数）
   - 期望$r\frac{1 - p}{p}$, 方差$r\frac{1-p}{p^2}$
   - pmf: $p(x) = \binom{x + r - 1}{r - 1}p^r(1 - p)^x = (-1)^k\binom{-r}{k}(1-p)^k p^{r}$
+  - 期望可以被记为是多个几何分布随机变量期望之和
 - 超几何分布（从有限样本中不放回的抽取一定数量，其中正面样本的数量）
   - pmf: $p(X = x) = \frac{\binom{N}{x}\binom{M}{n - x}}{\binom{N}{n}}$
 - 泊松分布（在固定时间 / 空间内，某事件发生次数的离散分布）
   - pmf: $p(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$
-  - 期望：$\lambda$
+  - 期望：$\lambda$， 方差$\lambdasss$
   - 泊松随机变量的和也满足泊松分布
-- 多项分布：有多种结果的二项分布
+-azscss 多项分布：有多种结果的二项分布
 
 ### LOTUS定理
 
@@ -170,3 +171,86 @@ E[g(X)] = \sum_{x} g(x)p(x)
 $$
 
 无需知道函数的分布便能求出函数的期望。
+
+### 期望的线性性
+
+$$
+\begin{align}
+  \mathbb{E}[aX + b] &= a\mathbb{E}[X] + b\\
+  \mathbb{E}[X + Y] &= \mathbb{E}[X] + \mathbb{E}[Y]
+\end{align}
+$$
+
+### 全期望定理
+
+$$
+\begin{align}
+  \mathbb{E}[X] &= \mathbb{E}[\mathbb{E}[X | Y]]\\
+  \mathbb{E}[X] &= \sum_{y} \mathbb{E}[X | Y = y] \cdot Pr(Y = y)
+\end{align}
+$$
+
+## 六 正态分布及相关不等式
+
+### 马尔可夫不等式
+
+假设$X$是 **非负随机变量**。
+
+$$
+Pr(X \geq a) \leq \frac{\mathbb{E}[X^k]}{a^k}
+$$
+
+变式：逆马尔可夫不等式
+
+$$
+Pr(X \leq a) = \frac{u - \mathbb{E}[X]}{u - a}
+$$
+
+$(X \leq u)$
+
+推广：
+
+$$
+Pr(f(X) \geq a) \leq \frac{\mathbb{E}[f(X)]}{a}
+$$
+
+### 切比雪夫不等式：用于一阶矩
+
+假设$X$是 **任意随机变量**。
+
+$$
+Pr(|X - \mathbb{E}[X]| \geq a) \leq \frac{Var[X]}{a^2}
+$$
+
+## 七 方差、协方差
+
+$$
+Var[X] = \mathbb{E}[(X - \mathbb{E}[X])^2]
+$$
+
+$$
+Var[X] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+$$
+
+方差是二次中心矩；因此有
+
+- $Var[X + a] = Var[X]$
+- $Var[aX] = a^2Var[X]$
+- $Var[X + Y] = Var[X] + Var[Y] + 2Cov[X, Y]$
+  - $Cov[X, Y] = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$.
+
+有柯西不等式的期望形式：
+
+$$
+\mathbb{E}[XY]^2 \leq \mathbb{E}[X^2]\mathbb{E}[Y^2]
+$$
+
+定义相关系数$\rho(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var[X]Var[Y]}}$，其取值范围为$[-1, 1]$。
+
+## 八 k阶矩（及不等式）
+
+定义$\mathbb{E}[X] = \mu$. 对于任意$C > 1, k \in \Z \geq 1$, 有
+
+$$
+Pr\left(|X - \mu| \geq C \cdot \mathbb{E}\left[|X - \mu|^k\right]^{\frac{1}{k}}\right) \leq \frac{1}{C^k}
+$$
