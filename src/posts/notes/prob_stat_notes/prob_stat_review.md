@@ -254,3 +254,66 @@ $$
 $$
 Pr\left(|X - \mu| \geq C \cdot \mathbb{E}\left[|X - \mu|^k\right]^{\frac{1}{k}}\right) \leq \frac{1}{C^k}
 $$
+
+### 大偏差边界
+
+$X \tilde{} N(\mu, \sigma^2), a > 0$, 有
+
+$$
+\begin{aligned}
+Pr(|X - \mu| \geq a\sigma) &\leq 2e^{-\frac{a^2}{2}}\\
+\end{aligned}
+$$
+
+### Chernoff Bound
+
+$X_1, X_2, \dots, X_n \in \set{1, 2}, X = \sum_{i = 1}^{n}X_i$, 有
+
+$$
+\begin{aligned}
+Pr(X \geq (1 + \delta)\mu) \leq \left(\frac{e^{\delta}}{(1 + \delta)^{(1 + \delta)}}\right)^{\mu}, (\delta > 0)\\
+Pr(X \leq (1 - \delta)\mu) \leq \left(\frac{e^{-\delta}}{(1 - \delta)^{(1 - \delta)}}\right)^{\mu}, (1 > \delta > 0)\\
+\end{aligned}
+$$
+
+### Chernoff-Hoeffding Bound
+
+$X_1, X_2, \dots, X_n \in \set{0, 1}$, $S_n = \sum_{i = 1}^{n}X_i$, 对于任意$t > 0$, 有
+
+$$
+\begin{aligned}
+  Pr\left(\left|S_n - \mathbb{E}[S_n]\right| \geq t\right) \leq 2\exp\left(-\frac{2t^2}{n}\right)
+\end{aligned}
+$$
+
+扩展：
+
+$X_1, X_2, \dots, X_n, X_i \in [a_i, b_i]$, $S_n = \sum_{i = 1}^{n}X_i$, 对于任意$t > 0$, 有
+
+$$
+\begin{aligned}
+  Pr\left(\left|S_n - \mathbb{E}[S_n]\right| \geq t\right) \leq 2\exp\left(-\frac{2t^2}{\sum_{i = 1}^{n}(b_i - a_i)^2}\right)
+\end{aligned}
+$$
+
+### McDarmaid's Inequality
+
+$X_1, X_2, \dots, X_n$为独立随机变量，$X_i \in \mathcal{X}_i$.
+
+若$f = \mathcal{X_1} \times \mathcal{X_2} \times \dots \times \mathcal{X_n}$满足
+
+$$
+\begin{aligned}
+  \forall i, \quad \sup_{x_1 \in \mathcal{X_1}, \dots, x_n \in \mathcal{X_n}} \left|f(x_1, \dots, x_n) - f(x_1, \dots, x_{i - 1}, x_i', x_{i + 1}, \dots, x_n)\right| \leq c_i
+\end{aligned}
+$$
+
+（任意更改一个参数的选择后差别不超过$c_i$）
+
+则对于任意$t > 0$, 有
+
+$$
+\begin{aligned}
+  Pr\left(\left|f(X_1, \dots, X_n) - \mathbb{E}[f(X_1, \dots, X_n)]\right| \geq t\right) \leq 2\exp\left(-\frac{2t^2}{\sum_{i = 1}^{n}c_i^2}\right)
+\end{aligned}
+$$
