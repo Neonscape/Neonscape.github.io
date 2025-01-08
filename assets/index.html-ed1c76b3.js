@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-8061463c","path":"/tag/compiler/","title":"compiler 标签","lang":"zh-CN","frontmatter":{"title":"compiler 标签","index":false,"feed":false,"sitemap":false,"blog":{"type":"category","name":"compiler","key":"tag"},"layout":"BlogCategory"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":0},"filePathRelative":null,"excerpt":""}');export{e as data};

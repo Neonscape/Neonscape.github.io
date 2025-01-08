@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-48982a0b","path":"/posts/notes/compiler_notes/","title":"Compiler Notes","lang":"zh-CN","frontmatter":{"title":"Compiler Notes","article":false,"feed":false,"sitemap":false},"headers":[],"git":{},"readingTime":{"minutes":0,"words":1},"filePathRelative":null,"excerpt":""}');export{e as data};
