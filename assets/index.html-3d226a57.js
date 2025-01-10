@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-28cf73c2","path":"/tag/miad/","title":"MIAD 标签","lang":"zh-CN","frontmatter":{"title":"MIAD 标签","index":false,"feed":false,"sitemap":false,"blog":{"type":"category","name":"MIAD","key":"tag"},"layout":"BlogCategory"},"headers":[],"git":{},"readingTime":{"minutes":0,"words":0},"filePathRelative":null,"excerpt":""}');export{e as data};
