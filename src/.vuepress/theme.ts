@@ -145,4 +145,9 @@ export default hopeTheme({
 		//   },
 		// },
 	},
+	encrypt:{
+		config: {
+			"/diary": ["PROPHECYOFDEMISE"]
+		}
+	}
 });
