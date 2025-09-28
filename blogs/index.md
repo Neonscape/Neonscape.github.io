@@ -1,5 +1,5 @@
 ---
-title: 目录
+title: 目录：总览
 date: 2025-09-20
 ---
 
@@ -12,4 +12,6 @@ date: 2025-09-20
 - [Week 01](timeline/week1.md)
 - [Week 02](timeline/week2.md)
 
-## 笔记
+## 开发文档
+
+- [Project Miraland 开发文档](docs/index.md)
