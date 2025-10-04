@@ -13,6 +13,10 @@ date: 2025-09-26
 
 - [UI数据绑定](UI/ui_event_dispatch.md)
 
+### 事件系统
+
+- [事件系统](event/event_system.md)
+
 ### 任务系统
 
 - [任务系统](quests/quest_system.md)
