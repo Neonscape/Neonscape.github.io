@@ -14,7 +14,7 @@ category:
 - 能够以物品容器组件的形式在世界中生成（如：内含多个物品实例的奖励箱，【内含一个枪械物品实例的、枪械形状的】物品容器，【内含一个物品实例、外观是默认物品容器形状的】掉落物品）
 - 物品容器组件能够支持物品实例的存入（背包系统、储藏处）与取出（奖励箱）
 
-### 物品静态数据（UItemStaticData，继承自UPrimaryDataAsset）
+### 物品静态数据（UItemStaticDataBase，继承自UPrimaryDataAsset）
 
 - 物品ID（`FName`）
 - 物品类别（`GameplayTag`）
@@ -31,7 +31,7 @@ category:
   - 数值（float）
   - ...
 
-### 物品运行时对象 (UItem，对不同类型的物品派生出不同的子类)
+### 物品运行时对象 (UItemObject，对不同类型的物品派生出不同的子类)
 
 - 物品实例ID（FGuid）
 - 物品静态数据

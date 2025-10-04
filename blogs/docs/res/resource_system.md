@@ -21,12 +21,3 @@ category:
 | 资源种类   | 2D材质     | Metasound源 | 静态网格体  | 骨骼网格体    |
 | ---------- | ---------- | ----------- | ----------- | ------------- |
 | 对应枚举项 | TEXTURE_2D | SOUND       | STATIC_MESH | SKELETAL_MESH |
-
-需要添加资源种类时：
-
-- 在EResourceType中添加对应的枚举项
-- 为资源种类添加对应的映射表Asset
-- 在ResourceSystemSettings中注册对应的资源类->映射表Asset的映射
-- 在AssetManager-PrimaryAssetTypesToScan里添加对应的映射表
-- 在GameResourceSubsystem中添加：
-  - 对应的蓝图同步和异步Get函数

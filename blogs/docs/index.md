@@ -40,3 +40,8 @@ date: 2025-09-26
 ### 交互系统
 
 - [交互系统](interaction/interaction_system.md)
+
+### 帮助
+
+- [本地化文本帮助](l10n/l10n_guide.md)
+- [资源系统帮助](res/resource_guide.md)
