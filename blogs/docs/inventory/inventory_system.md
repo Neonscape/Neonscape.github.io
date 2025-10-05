@@ -31,6 +31,8 @@ category:
   - 数值（float）
   - ...
 
+> 所有物品静态数据都以`FPrimaryAssetId("ItemStaticData", ItemID)`的方式注册到AssetManager中。
+
 ### 物品运行时对象 (UItemObject，对不同类型的物品派生出不同的子类)
 
 - 物品实例ID（FGuid）
@@ -53,6 +55,9 @@ category:
 ### 物品容器组件（UItemContainerComponent）
 
 - 内容物（`TArray<UItem*>`）
-- 战利品标识（`Widget`），当物品容器位于世界中且含有可拾取的内容时显示
 - 加入 / 删除物品的接口
 - 实现交互接口
+
+### 物品容器Actor（AItemContainerActor）
+
+- ？？？

@@ -45,3 +45,4 @@ date: 2025-09-26
 
 - [本地化文本帮助](l10n/l10n_guide.md)
 - [资源系统帮助](res/resource_guide.md)
+- [物品系统帮助](inventory/inventory_guide.md)
