@@ -9,6 +9,10 @@ date: 2025-09-26
 
 ## 客户端
 
+### 输入系统
+
+- [输入模式和输入状态机](input/input_state_machine.md)
+
 ### UI
 
 - [UI数据绑定](UI/ui_event_dispatch.md)

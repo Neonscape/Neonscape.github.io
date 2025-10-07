@@ -12,6 +12,7 @@ date: 2025-09-20
 - [Week 01](timeline/week1.md)
 - [Week 02](timeline/week2.md)
 - [Week 03](timeline/week3.md)
+- [Week 04](timeline/week4.md)
 
 ## 开发文档
 
