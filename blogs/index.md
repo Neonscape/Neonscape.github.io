@@ -5,7 +5,7 @@ date: 2025-09-20
 
 ## ？
 
-[游戏开发真是太豪丸辣！](/blogs/insanity.md)
+[游戏开发真是太豪丸辣！](insanity.md)
 
 ## 时间线
 
@@ -15,6 +15,10 @@ date: 2025-09-20
 - [Week 04](timeline/week4.md)
 
 ## 开发文档
+
+开发状态：
+
+[![wakatime](https://wakatime.com/badge/user/536a2170-8dc4-4bd0-ac02-0fb2bbb8971d/project/4148ba89-60e3-456b-bb1d-ae94428b3835.svg)](https://wakatime.com/badge/user/536a2170-8dc4-4bd0-ac02-0fb2bbb8971d/project/4148ba89-60e3-456b-bb1d-ae94428b3835)
 
 - [Project Miraland 开发文档](docs/index.md)
 

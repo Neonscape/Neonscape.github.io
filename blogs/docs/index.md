@@ -11,7 +11,7 @@ date: 2025-09-26
 
 ### 输入系统
 
-- [输入模式和输入状态机](input/input_state_machine.md)
+- [输入模式和输入状态机](input/input_mode.md)
 
 ### UI
 

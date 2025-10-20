@@ -18,7 +18,7 @@ category:
 
 贯穿游戏全局的事件总线。
 
-- `Broadcast(FGameplayTag EventTag, UGameEventContext* Payload)`：向所有注册过该FGameplayTag的Listener发送包含Payload的事件。
+- `Broadcast(FGameplayTag EventTag, UGameEventContext* Payload)`：将Gameplay事件排队至事件队列中以待转发。
 - `RegisterListener(FGameplayTag EventTag, Callback)`：注册对于某个FGameplayTag事件的监听器。
 - `UnregisterListener(FGameplayTag EventTag, Callback)`：取消注册某个FGameplayTag事件的监听器。
 
