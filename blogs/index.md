@@ -7,12 +7,22 @@ date: 2025-09-20
 
 [游戏开发真是太豪丸辣！](insanity.md)
 
+## 杂项
+
+- [ALSv4学习笔记](./misc/alsv4.md)
+
+## TODO
+
+- [TODO](todo.md)
+
 ## 时间线
 
 - [Week 01](timeline/week1.md)
 - [Week 02](timeline/week2.md)
 - [Week 03](timeline/week3.md)
 - [Week 04](timeline/week4.md)
+- [Week 05](timeline/week5.md)
+- [Week 06~09](timeline/week9.md)
 
 ## 开发文档
 

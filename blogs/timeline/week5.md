@@ -19,4 +19,6 @@ category: 开发记录
 
 ## 踩的坑
 
-
+- skeleton上可以设置各式各样的curve，在AnimBP里更新这些参数，然后可以用`GetAnimInstance()->GetCurveValue()`来读取这些值；这样可以让参数在转换的时候自动平滑。
+- 还能这样？？？？？？？
+- 
