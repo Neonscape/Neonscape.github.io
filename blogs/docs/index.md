@@ -13,6 +13,10 @@ date: 2025-09-26
 
 - [输入模式和输入状态机](input/input_mode.md)
 
+### 音频系统
+
+- [音频系统](sound/sound_system.md)
+
 ### UI
 
 - [UI数据绑定](UI/ui_event_dispatch.md)

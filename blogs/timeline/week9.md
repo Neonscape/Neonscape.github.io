@@ -14,3 +14,7 @@ category: 开发记录
 
 - 关于根运动：ALS中用到根运动的一共有两处，一处是Mantle，另一处是Roll。
   - 对于Mantle来说，ALS使用了一个自定义的RootMotionSource来直接从动画中提取根运动并直接应用到角色Movement上的；因此对于Mantle动画来说，**不需要为它启用根运动**！如果为Mantle动画再启用根运动的话Mantle传递给动画蓝图的根运动会和手动应用的根运动产生冲突。
+
+## 学到的内容
+
+- “相机功能”是`PlayerCharacterManager`管理的；它会每帧调用角色类上的`CalcCamera`来获取相机信息（`FViewInfo`），因此只要能提供这个信息的都可以算是相机。

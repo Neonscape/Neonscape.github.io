@@ -6,7 +6,8 @@ category: 备忘
 
 ## 动画系统
 
-- 重构动画系统以使用基于角色Socket的位置
+- ~~重构动画系统以使用基于角色Socket的位置~~
+- ~~重构PlayerCharacter以使用C++~~
 - IK、ControlRig
 - 武器瞄准Overlay
 - 脚步通知
@@ -16,4 +17,4 @@ category: 备忘
 - 头发高光Mask
 - 多光源动态更新和Blend
 - 环境卡渲
-- 边缘光
+- ~~边缘光~~
