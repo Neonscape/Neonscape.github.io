@@ -3,9 +3,19 @@ title: 目录：开发文档
 date: 2025-09-26
 ---
 
+## 策划案
+
+- [策划案](game/design.md)
+
 ## 角色
 
 ### 属性集
+
+## 战斗
+
+### 伤害系统
+
+- [伤害系统](combat/damage_system.md)
 
 ## 客户端
 
@@ -36,10 +46,6 @@ date: 2025-09-26
 ### 物品系统
 
 - [物品系统](inventory/inventory_system.md)
-
-### 音频系统
-
-- [音频系统](sound/sound_system.md)
 
 ### 动画系统
 

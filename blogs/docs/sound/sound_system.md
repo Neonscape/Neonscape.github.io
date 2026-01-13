@@ -33,6 +33,14 @@ category:
 
 * **必需标签**：
     * `Audio.Category.<CatType>`：用于区分声音的【类别】，决定位于哪个 Soundbank，以及路由到哪个 Sound Submix。
+      * 类别列表：
+      * `Audio.Category.UI`
+      * `Audio.Category.Weapon`
+      * `Audio.Category.Foley`
+      * `Audio.Category.Ambience`
+      * `Audio.Category.Character`
+      * `Audio.Category.Prop`
+      * `Audio.Category.Special`
 * **可选标签**：
     * `Audio.Event.<Domain>.<Action>`：哪个物体的哪个动作触发的。
     * `Audio.Semantic.<SemType>`：音效的“感觉”。
